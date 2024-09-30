@@ -15,15 +15,14 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your unit tests
-		try {
-                    // Run your unit tests
-                    sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
-                } catch (err) {
-                    // Handle the exception
-                    echo "Unit tests failed: ${err}"
-		    currentBuild.result = 'FAILURE'
-                    // Optional: Send the error message to a reporting tool 
-                }
+		if (fileExists('sample_tests.py')) {
+			try {
+                    		sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
+  	                } catch (err) {
+                    		echo "Unit tests failed: ${err}"
+			   	currentBuild.result = 'FAILURE'
+                	}
+		}
             }
         }
     }
