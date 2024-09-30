@@ -1,19 +1,6 @@
 import unittest
 from sample import plus, multiply
 
-def plus(a: int, b: int) -> int:
-  """
-  Возвращает результат сложения двух целых чисел.
-
-  Args:
-    a: Первое целое число.
-    b: Второе целое число.
-
-  Returns:
-    Результат сложения a и b в виде целого числа.
-  """
-  return a + b
-
 class TestPlus(unittest.TestCase):
     def test_plus_positive(self):
         self.assertEqual(plus(5, 3), 8)
