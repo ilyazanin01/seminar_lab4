@@ -28,9 +28,7 @@ pipeline {
     }
     post {
         always {
-            // Optional: Send test results to a reporting tool
-            // sh 'allure generate report/allure-results -o report/allure-report' 
-            // sh 'allure serve report/allure-report' // For viewing the report 
+		echo 'I will always say Hello again!'
         }
     }
 }
