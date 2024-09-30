@@ -15,7 +15,14 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your unit tests
-                sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
+		try {
+                    // Run your unit tests
+                    sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
+                } catch (Exception e) {
+                    // Handle the exception
+                    error("Unit tests failed: ${e.message}")
+                    // Optional: Send the error message to a reporting tool 
+                }
             }
         }
     }
