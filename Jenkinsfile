@@ -9,7 +9,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Install dependencies if necessary
-                echo "Buliding...'
+                echo 'Buliding...'
             }
         }
         stage('Test') {
