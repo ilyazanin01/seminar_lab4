@@ -10,6 +10,7 @@ pipeline {
             steps {
                 // Install dependencies if necessary
                 echo 'Buliding...'
+		sh 'python -m unittest sample_tests.py'
             }
         }
         stage('Test') {
