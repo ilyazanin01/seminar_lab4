@@ -26,5 +26,5 @@ pipeline {
             // sh 'allure serve report/allure-report' // For viewing the report 
         }
     }
-}```
+}
 
