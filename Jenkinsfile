@@ -23,6 +23,10 @@ pipeline {
 			   	currentBuild.result = 'FAILURE'
                 	}
 		}
+		if (currentBuild.result != 'SUCCESS') { 
+                    // Set the build status to FAILURE if pytest failed
+                    currentBuild.result = 'FAILURE'
+                }
 		
             }
         }
