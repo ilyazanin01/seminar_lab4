@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/ilyazanin01/seminar_lab4.git' 
+                git branch:'main', url: 'https://github.com/ilyazanin01/seminar_lab4.git' 
             }
         }
         stage('Build') {
@@ -18,9 +18,10 @@ pipeline {
 		try {
                     // Run your unit tests
                     sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
-                } catch (Exception e) {
+                } catch (err) {
                     // Handle the exception
-                    error("Unit tests failed: ${e.message}")
+                    echo "Unit tests failed: ${err}"
+		    currentBuild.result = 'FAILURE'
                     // Optional: Send the error message to a reporting tool 
                 }
             }
