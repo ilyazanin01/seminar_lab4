@@ -15,7 +15,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your unit tests
-            	sh 'python -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
+            	sh 'python3 -m unittest sample_tests.py' // Or use 'python -m unittest discover' 
             }
         }
     }
