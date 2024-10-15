@@ -1,5 +1,5 @@
 import unittest
-from sample import plus, multiply
+from sample import plus
 
 class TestPlus(unittest.TestCase):
     def test_plus_positive(self):
@@ -13,7 +13,3 @@ class TestPlus(unittest.TestCase):
 
     def test_plus_large_numbers(self):
         self.assertEqual(plus(10000, 5000), 15000)
-
-if __name__ == '__main__':
-    unittest.main()
-
