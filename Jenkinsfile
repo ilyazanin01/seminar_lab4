@@ -16,7 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 // Run your unit tests
-		if (fileExists('sample_tests.py321')) {
+		if (fileExists('sample_tests.py')) {
 			try {
                     		sh 'python -m unittest sample_tests.py123' // Or use 'python -m unittest discover' 
   	                } catch (err) {
