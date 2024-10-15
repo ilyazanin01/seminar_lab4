@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  jenkins:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_data:/var/jenkins_home
+      - ./jenkins_plugins:/var/jenkins_plugins
+    environment:
+      - TZ=Europe/Moscow
+    networks:
+      dockernet:
+        ipv4_address: 10.10.10.2
+  chrony:
+    image: publicarray/chrony:latest
+    restart: unless-stopped
+    ports:
+      - "123:123/udp"
+    volumes:
+      - ./chrony/chrony.conf:/etc/chrony/chrony.conf
+    cap_add:
+      - SYS_TIME
+    environment:
+      - TZ=Europe/Moscow
+    networks:
+      dockernet:
+        ipv4_address: 10.10.10.1
+
+volumes:
+  jenkins_data:
+  jenkins_plugins:
+
+networks:
+  dockernet: # docker network, still can access on 10.10.0.1:443 (host ip-address), but it's internal interface. public access is denied
+    driver: bridge
+    internal: true
+    ipam:
+      config:
+        - subnet: 10.10.10.0/8
+
